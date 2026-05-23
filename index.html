@@ -4,11 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Uniro Vision</title>
+<title>Uniro</title>
 
 <style>
 
@@ -23,156 +21,115 @@ body{
 background:#0f172a;
 color:white;
 overflow:hidden;
-}
-
-/* TOPBAR */
-
-.topbar{
-position:fixed;
-top:0;
-right:0;
-left:0;
-height:70px;
-background:#111827;
 display:flex;
-justify-content:space-between;
-align-items:center;
-padding:0 20px;
-z-index:999;
-border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.logo{
-font-size:28px;
-font-weight:bold;
-}
-
-.roles{
-display:flex;
-gap:10px;
-overflow:auto;
-}
-
-.roles button{
-background:#1e293b;
-border:none;
-color:white;
-padding:10px 16px;
-border-radius:14px;
-cursor:pointer;
-transition:.3s;
-white-space:nowrap;
-}
-
-.roles button:hover{
-background:#2563eb;
+height:100vh;
 }
 
 /* SIDEBAR */
 
 .sidebar{
-position:fixed;
-top:70px;
-right:0;
-width:250px;
-height:100%;
+width:270px;
 background:#111827;
 padding:20px;
-overflow:auto;
+display:flex;
+flex-direction:column;
+gap:14px;
 border-left:1px solid rgba(255,255,255,.05);
 }
 
-.sidebar h2{
+.logo{
+font-size:32px;
+font-weight:bold;
 margin-bottom:20px;
 }
 
-.menu{
-display:flex;
-flex-direction:column;
-gap:12px;
-}
-
-.menu button{
+.sidebar button{
 background:#1e293b;
 border:none;
-padding:15px;
-border-radius:16px;
+padding:16px;
+border-radius:18px;
 color:white;
-text-align:right;
 cursor:pointer;
-transition:.3s;
+text-align:right;
 font-size:15px;
+transition:.3s;
 }
 
-.menu button:hover{
+.sidebar button:hover{
 background:#2563eb;
 }
 
 /* MAIN */
 
 .main{
-margin-right:250px;
-padding-top:70px;
-height:100vh;
+flex:1;
+padding:25px;
 overflow:auto;
 }
 
-.page{
-padding:25px;
-}
+/* CARDS */
 
-.hero{
-background:linear-gradient(135deg,#2563eb,#1d4ed8);
-padding:35px;
-border-radius:30px;
-margin-bottom:25px;
-}
-
-.hero h1{
-font-size:36px;
-margin-bottom:12px;
-}
-
-.hero p{
-line-height:1.8;
-opacity:.95;
-}
-
-.cards{
+.grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
 }
 
 .card{
-background:#1e293b;
+background:#111827;
 padding:25px;
-border-radius:24px;
+border-radius:28px;
 transition:.3s;
 }
 
 .card:hover{
-transform:translateY(-5px);
+transform:translateY(-4px);
 }
 
 .card h2{
 margin-bottom:12px;
+font-size:22px;
+}
+
+.card p{
+opacity:.8;
+line-height:1.8;
+}
+
+/* TABLE */
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+overflow:hidden;
+border-radius:20px;
+}
+
+th,td{
+padding:16px;
+background:#111827;
+text-align:center;
+}
+
+th{
+background:#1e293b;
 }
 
 /* CHAT */
 
-.chat-layout{
-height:calc(100vh - 120px);
+.chat{
+height:calc(100vh - 50px);
 background:#111827;
-border-radius:28px;
-overflow:hidden;
+border-radius:30px;
 display:flex;
 flex-direction:column;
+overflow:hidden;
 }
 
 .chat-top{
+padding:18px;
 background:#1e293b;
-padding:16px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -181,13 +138,13 @@ align-items:center;
 .chat-messages{
 flex:1;
 overflow:auto;
-padding:18px;
+padding:20px;
 display:flex;
 flex-direction:column;
-gap:12px;
+gap:14px;
 }
 
-.message{
+.msg{
 padding:14px 18px;
 border-radius:20px;
 max-width:75%;
@@ -205,8 +162,8 @@ align-self:flex-end;
 }
 
 .chat-input{
+padding:12px;
 background:#0f172a;
-padding:10px;
 display:flex;
 gap:10px;
 align-items:center;
@@ -214,10 +171,10 @@ align-items:center;
 
 .chat-input input{
 flex:1;
-background:#1e293b;
-border:none;
 padding:16px;
+border:none;
 border-radius:18px;
+background:#1e293b;
 color:white;
 font-size:15px;
 outline:none;
@@ -232,35 +189,31 @@ color:white;
 cursor:pointer;
 }
 
-.emoji{
-font-size:24px;
-cursor:pointer;
-}
-
-/* RESPONSIVE */
+/* MOBILE */
 
 @media(max-width:900px){
 
 body{
+flex-direction:column;
 overflow:auto;
 }
 
 .sidebar{
-position:relative;
 width:100%;
-height:auto;
-top:70px;
-border:none;
+flex-direction:row;
+overflow:auto;
+}
+
+.logo{
+display:none;
 }
 
 .main{
-margin-right:0;
-padding-top:90px;
-height:auto;
+padding:15px;
 }
 
-.chat-layout{
-height:600px;
+.chat{
+height:80vh;
 }
 
 }
@@ -271,79 +224,25 @@ height:600px;
 
 <body>
 
-<!-- TOP -->
+<!-- SIDEBAR -->
 
-<div class="topbar">
+<div class="sidebar">
 
 <div class="logo">
 Uniro
 </div>
 
-<div class="roles">
-
-<button onclick="changeRole('طالب')">
-طالب
+<button onclick="openPage('notifications')">
+🔔 التنبيهات
 </button>
 
-<button onclick="changeRole('ليدر')">
-ليدر
-</button>
-
-<button onclick="changeRole('مشرف')">
-مشرف
-</button>
-
-<button onclick="changeRole('أدمن')">
-أدمن
-</button>
-
-<button onclick="changeRole('Owner')">
-Owner
-</button>
-
-</div>
-
-</div>
-
-<!-- SIDEBAR -->
-
-<div class="sidebar">
-
-<h2 id="roleText">
-الدور: طالب
-</h2>
-
-<div class="menu">
-
-<button onclick="openPage('home')">
-🏠 الرئيسية
-</button>
-
-<button onclick="openPage('subjects')">
-📚 المواد
-</button>
-
-<button onclick="openPage('notes')">
-🧠 المذكرة الذكية
-</button>
-
-<button onclick="openPage('exams')">
-📝 الاختبارات
+<button onclick="openPage('schedule')">
+📅 جدول المحاضرات
 </button>
 
 <button onclick="openPage('chat')">
-💬 الشات الجامعي
+💬 الشات
 </button>
-
-<button onclick="openPage('analytics')">
-📊 التحليلات
-</button>
-
-<button onclick="openPage('settings')">
-⚙️ الإعدادات
-</button>
-
-</div>
 
 </div>
 
@@ -351,76 +250,45 @@ Owner
 
 <div class="main">
 
-<div id="content" class="page">
+<div id="content">
 
-<!-- HOME -->
+<!-- NOTIFICATIONS -->
 
-<div class="hero">
-
-<h1>
-مرحباً بك في Uniro Vision
-</h1>
-
-<p>
-منصة جامعية ذكية متكاملة تجمع الدراسة،
-الشات، الاختبارات، الذكاء الاصطناعي،
-المذكرات، وتنظيم الحياة الجامعية بالكامل.
-</p>
-
-</div>
-
-<div class="cards">
+<div class="grid">
 
 <div class="card">
-
-<h2>
-🧠 المذكرة الذكية
-</h2>
-
+<h2>🔔 مواعيد المحاضرات</h2>
 <p>
-تلخيص المحاضرات وتحويلها
-إلى خرائط مفاهيم واختبارات.
+تنبيه قبل بداية المحاضرات تلقائياً.
 </p>
-
 </div>
 
 <div class="card">
-
-<h2>
-💬 الشات الجامعي
-</h2>
-
+<h2>📝 الاختبارات الذاتية</h2>
 <p>
-شات سريع وعصري منافس
-للواتساب والتليجرام.
+تذكير بالاختبارات والمراجعة.
 </p>
-
 </div>
 
 <div class="card">
-
-<h2>
-📝 الاختبارات النهائية
-</h2>
-
+<h2>📚 الاختبارات الدورية</h2>
 <p>
-بنك أسئلة وتحليل مستوى
-وتتبع أداء كامل.
+تنبيهات مواعيد الاختبارات القادمة.
 </p>
-
 </div>
 
 <div class="card">
-
-<h2>
-🤖 AI Assistant
-</h2>
-
+<h2>👥 المنتدى</h2>
 <p>
-مساعد ذكي يساعدك بالمذاكرة
-وإدارة الوقت.
+آخر المشاركات والتنبيهات الجامعية.
 </p>
+</div>
 
+<div class="card">
+<h2>✅ الواجبات</h2>
+<p>
+متابعة الواجبات ومواعيد التسليم.
+</p>
 </div>
 
 </div>
@@ -431,55 +299,44 @@ Owner
 
 <script>
 
-/* ROLE */
-
-function changeRole(role){
-
-document.getElementById("roleText")
-.innerHTML = "الدور: " + role;
-
-}
-
-/* PAGES */
+/* OPEN PAGES */
 
 function openPage(page){
 
-let content =
+const content =
 document.getElementById("content");
 
-/* HOME */
+/* NOTIFICATIONS */
 
-if(page === "home"){
+if(page === "notifications"){
 
 content.innerHTML = `
 
-<div class="hero">
-
-<h1>
-مرحباً بك في Uniro
-</h1>
-
-<p>
-كل حياتك الجامعية داخل منصة واحدة.
-</p>
-
-</div>
-
-<div class="cards">
+<div class="grid">
 
 <div class="card">
-<h2>📚 المواد</h2>
-<p>إدارة جميع موادك الدراسية.</p>
+<h2>🔔 مواعيد المحاضرات</h2>
+<p>تنبيه قبل المحاضرات تلقائياً.</p>
 </div>
 
 <div class="card">
-<h2>🧠 الذكاء الاصطناعي</h2>
-<p>تلخيص وإنشاء أسئلة تلقائياً.</p>
+<h2>📝 الاختبارات الذاتية</h2>
+<p>متابعة الاختبارات والمراجعة.</p>
 </div>
 
 <div class="card">
-<h2>💬 المجتمع الجامعي</h2>
-<p>شات سريع ومجموعات ذكية.</p>
+<h2>📚 الاختبارات الدورية</h2>
+<p>جدولة وتنبيهات مستمرة.</p>
+</div>
+
+<div class="card">
+<h2>👥 المنتدى</h2>
+<p>إشعارات المشاركات الجديدة.</p>
+</div>
+
+<div class="card">
+<h2>✅ الواجبات</h2>
+<p>تنبيهات التسليم والمهام.</p>
 </div>
 
 </div>
@@ -488,111 +345,45 @@ content.innerHTML = `
 
 }
 
-/* SUBJECTS */
+/* SCHEDULE */
 
-if(page === "subjects"){
-
-content.innerHTML = `
-
-<div class="cards">
-
-<div class="card">
-<h2>📘 أساسيات الاقتصاد</h2>
-<p>المحاضرات والملفات والواجبات.</p>
-</div>
-
-<div class="card">
-<h2>📗 رياضيات الأعمال</h2>
-<p>شرح واختبارات وملخصات.</p>
-</div>
-
-<div class="card">
-<h2>📙 الإدارة المالية</h2>
-<p>متابعة التقدم الدراسي.</p>
-</div>
-
-</div>
-
-`;
-
-}
-
-/* NOTES */
-
-if(page === "notes"){
+if(page === "schedule"){
 
 content.innerHTML = `
 
-<div class="hero">
-
-<h1>
-🧠 المذكرة الذكية
-</h1>
-
-<p>
-تلخيص المحاضرات وتحويلها
-إلى خرائط مفاهيم وفلاش كارد.
-</p>
-
-</div>
-
-<div class="cards">
-
 <div class="card">
-<h2>📄 تلخيص PDF</h2>
-<p>تلخيص ذكي للمحاضرات.</p>
-</div>
 
-<div class="card">
-<h2>🗺️ خرائط مفاهيم</h2>
-<p>تنظيم المعلومات بصرياً.</p>
-</div>
+<h2>
+📅 جدول المحاضرات
+</h2>
 
-<div class="card">
-<h2>📝 إنشاء Quiz</h2>
-<p>توليد أسئلة تلقائية.</p>
-</div>
+<table>
 
-</div>
+<tr>
+<th>المادة</th>
+<th>الوقت</th>
+<th>اليوم</th>
+</tr>
 
-`;
+<tr>
+<td>أساسيات الاقتصاد</td>
+<td>10:00 AM</td>
+<td>الأحد</td>
+</tr>
 
-}
+<tr>
+<td>رياضيات الأعمال</td>
+<td>1:00 PM</td>
+<td>الإثنين</td>
+</tr>
 
-/* EXAMS */
+<tr>
+<td>الإدارة المالية</td>
+<td>11:00 AM</td>
+<td>الثلاثاء</td>
+</tr>
 
-if(page === "exams"){
-
-content.innerHTML = `
-
-<div class="hero">
-
-<h1>
-📝 الاختبارات النهائية
-</h1>
-
-<p>
-بنك أسئلة وتحليل أداء وتتبع مستوى.
-</p>
-
-</div>
-
-<div class="cards">
-
-<div class="card">
-<h2>🔥 اختبار سريع</h2>
-<p>ابدأ اختبار عشوائي.</p>
-</div>
-
-<div class="card">
-<h2>📊 التحليل</h2>
-<p>تحليل نقاط القوة والضعف.</p>
-</div>
-
-<div class="card">
-<h2>🏆 Leaderboard</h2>
-<p>ترتيب الطلاب.</p>
-</div>
+</table>
 
 </div>
 
@@ -606,7 +397,7 @@ if(page === "chat"){
 
 content.innerHTML = `
 
-<div class="chat-layout">
+<div class="chat">
 
 <div class="chat-top">
 
@@ -623,99 +414,26 @@ content.innerHTML = `
 <div class="chat-messages"
 id="messages">
 
-<div class="message other">
-أهلاً بك في Uniro 👋
+<div class="msg other">
+أهلاً بك في شات Uniro 👋
 </div>
 
-<div class="message me">
-الشات يعمل بالكامل 🔥
+<div class="msg me">
+الشات مستقر وسريع 🔥
 </div>
 
 </div>
 
 <div class="chat-input">
 
-<div class="emoji"
-onclick="emoji('😂')">
-😂
-</div>
-
-<div class="emoji"
-onclick="emoji('🔥')">
-🔥
-</div>
-
-<div class="emoji"
-onclick="emoji('❤️')">
-❤️
-</div>
-
 <input type="text"
-id="msg"
+id="msgInput"
 placeholder="اكتب رسالتك..." />
 
 <button onclick="sendMsg()">
 إرسال
 </button>
 
-</div>
-
-</div>
-
-`;
-
-}
-
-/* ANALYTICS */
-
-if(page === "analytics"){
-
-content.innerHTML = `
-
-<div class="cards">
-
-<div class="card">
-<h2>📊 الأداء</h2>
-<p>متابعة درجاتك ومستواك.</p>
-</div>
-
-<div class="card">
-<h2>⏱️ الوقت</h2>
-<p>تحليل وقت المذاكرة.</p>
-</div>
-
-<div class="card">
-<h2>🎯 التقدم</h2>
-<p>نسبة الإنجاز الكاملة.</p>
-</div>
-
-</div>
-
-`;
-
-}
-
-/* SETTINGS */
-
-if(page === "settings"){
-
-content.innerHTML = `
-
-<div class="cards">
-
-<div class="card">
-<h2>⚙️ الحساب</h2>
-<p>تعديل البيانات الشخصية.</p>
-</div>
-
-<div class="card">
-<h2>🌙 المظهر</h2>
-<p>الوضع الليلي والنهاري.</p>
-</div>
-
-<div class="card">
-<h2>🔔 الإشعارات</h2>
-<p>التحكم بالتنبيهات.</p>
 </div>
 
 </div>
@@ -731,7 +449,7 @@ content.innerHTML = `
 function sendMsg(){
 
 let input =
-document.getElementById("msg");
+document.getElementById("msgInput");
 
 let text = input.value.trim();
 
@@ -743,8 +461,7 @@ document.getElementById("messages");
 let div =
 document.createElement("div");
 
-div.className =
-"message me";
+div.className = "msg me";
 
 div.innerText = text;
 
@@ -754,17 +471,6 @@ messages.scrollTop =
 messages.scrollHeight;
 
 input.value = "";
-
-}
-
-/* EMOJI */
-
-function emoji(icon){
-
-let input =
-document.getElementById("msg");
-
-input.value += icon;
 
 }
 
